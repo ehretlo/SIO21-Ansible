@@ -13,12 +13,12 @@
 ## green.example.com
 ## blue.example.com
 ## 192.168.100.1
-## 192.168.100.10
+192.168.1.23
 
 # Ex 2: A collection of hosts belonging to the 'webservers' group:
 
    [webservers]
-   192.168.43.7
+   192.168.1.23
 
 
 # If you have multiple hosts following a pattern, you can specify
