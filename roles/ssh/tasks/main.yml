@@ -1,0 +1,41 @@
+---
+# tasks file for ssh
+     - name: Suppression de l'accès root pour la connexion SSH
+       lineinfile:
+              dest: /etc/ssh/sshd_config
+              regexp: "^PermitRootLogin"
+              line: "PermitRootLogin no"
+              state: present
+              notify: "Restart ssh"
+
+      - name: Suppression de l'authentification par mot de passe 
+        lineinfile:
+              dest: /etc/ssh/sshd_config
+              regexp: "^PasswordAuthentication"
+              line: "PasswordAuthentification no"
+              state: present
+              notify: "Restart SSH"
+
+      - name: Autorisation de l'authentification par clé public
+        lineinfile:
+              dest: /etc/ssh/sshd_config
+              regexp: "^PubkeyAuthentication"
+              line: "PubkeyAuthentication yes"
+              state: present
+              notify: "Restart SSH"
+
+       - name: Change SSHD port
+         lineinfile:
+              dest: /etc/ssh/sshd_config
+              regexp: "^Port 22"
+              line: "Port 1128"
+              state: present
+              notify: "Restart SSH"
+
+       - name: Autorise uniquement le groupe SSH à se connecter 
+         lineinfile:
+              dest: /etc/ssh/sshd_config
+              regexp: "AllowGroups"
+              line: "AllowGroups sshusers"
+              state: present
+              notify: "Restart ssh"
