@@ -1,0 +1,22 @@
+---
+# tasks file for fail2ban
+
+- hosts: webservers
+  become: yes
+  become_user: root
+  become_method: sudo 
+
+  tasks:
+       - name: Installation fail2ban
+        apt: sudo apt install fail2ban -y 
+        update_cache: yes
+        state: latest 
+        name: ['fail2ban']
+
+
+       - name: Installation fail2ban 
+         apt: sudo systemctl enable fail2ban --now
+         update_cache: yes
+         state: latest
+         name: ['fail2ban']
+
